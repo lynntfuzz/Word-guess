@@ -2,36 +2,40 @@
 var cities = ["London", "Paris", "Rome", "Berlin", "New York", "Los Angeles", "Hong Kong", "Tokyo", "Shanghai", "Bangkok", "Sydney", "Dubai"];
 var numberOfGuessesRemaining = 15;
 var lettersGuessed = [];
+var wins = 0;
+var chosenCity = cities[Math.floor(Math.random() * cities.length)];
+var imagename = "assets/images/globe_flags.png";
+var city_image = document.getElementById("citypic");
+city_image.setAttribute("src", imagename);
 
-var chosenCity = cities[Math.floor(Math.random() * cities.length)]
 console.log("Chosen city = " + chosenCity);
 
-// Build the underscores to display the blank word
-var underscores = "";
-for (var i = 0;i < chosenCity.length;i++) {
-    if (chosenCity[i] === " ") underscores = underscores + " ";
-    else underscores = underscores + "_ ";
-}
-underscores.trim(underscores.length -1);
 
-var wordElement = document.getElementById("underscores");
-wordElement.innerHTML = generateUnderscoreString(chosenCity, lettersGuessed);
+// Build the underscore string
+document.getElementById("underscores").innerHTML = generateUnderscoreString(chosenCity, lettersGuessed);
 
 document.onkeyup = function(event) {
 
     if (numberOfGuessesRemaining > 0) {
         var userGuess = event.key;
-        document.getElementById("guesses_remaining").innerText = numberOfGuessesRemaining--;
+        numberOfGuessesRemaining--;
+        document.getElementById("guesses_remaining").innerText = numberOfGuessesRemaining;
         if (!lettersGuessed.includes(userGuess.toUpperCase())) lettersGuessed.push(userGuess.toUpperCase());
         document.getElementById("underscores").innerText = generateUnderscoreString(chosenCity, lettersGuessed);
         document.getElementById("lettersUsed").innerText = lettersGuessed;
-        if (!document.getElementById("underscores").innerText.includes("_")) {
-            console.log("here");
-            document.getElementById("underscores").innerText = " YOU WIN!!!! The answer was: " + chosenCity;
+        if (!document.getElementById("underscores").innerText.includes("_ ")) {
+            console.log("here"); 
+            setImage(chosenCity); // show city whether win or lose   
+            document.getElementById("city_result").innerText = "YOU WIN!!! The answer was:  " + chosenCity;
+            wins++;
+            resetValues();
         }
     } else {
-        document.getElementById("underscores").innerText = "You lose!!! The answer was: " + chosenCity;
+        document.getElementById("city_result").innerText = "YOU LOSE!!! The answer was: " + chosenCity;
+        setImage(chosenCity); // show city whether win or lose
+        resetValues();
     }
+   
 }
 
 
@@ -41,12 +45,28 @@ function generateUnderscoreString(chosenWord, lettersGuessed) {
         if (lettersGuessed.includes(chosenWord[i].toUpperCase())) {
             underscoreString = underscoreString + chosenWord[i].toUpperCase() + " ";
         }
+        else if (chosenWord[i] == " ")underscoreString = underscoreString + " ";
         else underscoreString = underscoreString + "_ ";
     }
-    underscores.trim(underscoreString.length -1);
     
     var wordElement = document.getElementById("underscores");
     wordElement.innerHTML = underscoreString;
     return underscoreString;
 
+}
+
+function setImage(cityName) {
+    var imagename = "assets/images/" + cityName.replace(/ /g,'') + ".jpeg";
+    console.log(imagename);
+    var city_image = document.getElementById("citypic").setAttribute("src", imagename);
+}
+
+function resetValues() {
+    numberOfGuessesRemaining = 15;
+    chosenCity = cities[Math.floor(Math.random() * cities.length)];
+    lettersGuessed = [];
+    document.getElementById("underscores").innerHTML = generateUnderscoreString(chosenCity, lettersGuessed);
+    document.getElementById("wins").innerText = wins;
+    document.getElementById("lettersUsed").innerText = lettersGuessed;
+    document.getElementById("guesses_remaining").innerText = numberOfGuessesRemaining;
 }

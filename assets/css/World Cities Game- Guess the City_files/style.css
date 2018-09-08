@@ -1,0 +1,46 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+header {
+    font-size:36px;
+    margin: 20px;
+    padding: 20px;
+}
+
+body {
+    background-image: url("../images/globe_flags.png");
+    /* background-repeat: repeat-x; */
+}
+
+.word {
+    font-size: 50px;
+    padding: 20px;
+}
+
+.underscore_container {
+    font-size: 50px;
+    padding: 20px; 
+    margin:20px;
+}
+
+.guesses_remaining {
+    font-size: 24px;
+    margin: 20px;
+    padding: 20px;
+}
+
+.letters_used {
+    font-size: 24px;
+    margin: 20px;
+    padding: 20px;
+}
+
+#city_image {
+    float:right;
+    z-index: 1;
+    align-content: center;
+    width:150;
+    height:100;
+    margin-bottom: 250px;
+}
