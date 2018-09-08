@@ -19,15 +19,19 @@
         <![endif]-->
         <div class="outer_container">
             <header>
-                <h1>Guess the World City</h1>          
+                <h1>Guess the World City</h1>   
+                <h3>Press any key to get started.</h3>       
             </header>
             <div class="main_content"> 
-                <div class="left">
+                <div class="underscore_container"> 
+                    <pre id="underscores">test</pre>
                 </div>
-                <div class="right">
-                    <div class="word">_ _ _ _ _</div>
-                    <div class="lettersUsed"></div>             
-                </div>
+                <div class="guesses_remaining"><h3>Number of Guesses Remaining:</h3>
+                    <p id="guesses_remaining">15</p>
+                </div> 
+                <div class="letters_used"><h3>Letters Used</h3>
+                    <p id="lettersUsed"></p>
+                </div>     
             </div>
         </div>
         <script src="assets/javascript/game.js" async defer></script>
