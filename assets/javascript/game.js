@@ -2,7 +2,9 @@
 // Note that there is expected to be a one-to-one correspondence bewtween each
 // city and an image of that city in the assests/images folder. If the city is
 // Los Angeles the associated image must be named LosAngeles.jpeg. 
+var CITIES_STATIC = ["London", "Paris", "Rome", "Berlin", "New York", "Los Angeles", "Hong Kong", "Tokyo", "Shanghai", "Bangkok", "Sydney", "Dubai"];
 var cities = ["London", "Paris", "Rome", "Berlin", "New York", "Los Angeles", "Hong Kong", "Tokyo", "Shanghai", "Bangkok", "Sydney", "Dubai"];
+var countries = ["The United Kingdom", "France", "Italy","Germany","The United States", "The United States", "China", "Japan", "China","Thailand","Australia", "The United Arab Emirates"];
 var numberOfGuessesRemaining = 15;
 var lettersGuessed = [];
 var wins = 0;
@@ -13,6 +15,7 @@ city_image.setAttribute("src", imagename);
 console.log("Chosen city = " + chosenCity);
 document.getElementById("city_result").textContent = "Guess the city!!!";
 var audio = new Audio("");
+document.getElementById("stop-btn").addEventListener("click", stopMusic);
 
 
 // Build the underscore string
@@ -31,7 +34,7 @@ document.onkeyup = function(event) {
             document.getElementById("lettersUsed").textContent = "Letters Used: " + lettersGuessed;
             if (!document.getElementById("underscores").textContent.includes("_ ")) {
                 setImage(chosenCity); // show city whether win or lose   
-                setAudio(chosenCity);
+                playAnthem(chosenCity);
                 document.getElementById("city_result").textContent = "YOU WIN!!! The answer was:  " + chosenCity;
                 wins++;
                 cities.splice(cities.indexOf(chosenCity), 1);
@@ -72,16 +75,27 @@ function setImage(cityName) {
     var city_image = document.getElementById("citypic").setAttribute("src", imagename);
 }
 
-function setAudio(cityName) { 
-    if (!audio.paused) audio.pause();
+function playAnthem(cityName) { 
+    stopMusic();
     var audiofile = "assets/mp3/" + cityName.replace(/ /g,'') + ".mp3";
     audio.setAttribute("src", audiofile);
     audio.play();
-    setTimeout(function() { 
-        audio.pause(); 
-        document.getElementById("city_result").textContent = "Guess another city!!!";
-        document.getElementById("citypic").setAttribute("src", imagename);
-    }, 15000);
+    var index = CITIES_STATIC.indexOf(cityName);
+    
+    console.log("Index of " + cityName + " is " + index);
+    console.log("cities= "+ CITIES_STATIC[index]);
+    console.log("countriese = " + countries[index]);
+    document.getElementById("anthem-info").innerText= "Now Playing: National Anthem of " + countries[index];
+    // setTimeout(function() { 
+    //     stopMusic();
+    //     document.getElementById("city_result").textContent = "Guess another city!!!";
+    //     document.getElementById("citypic").setAttribute("src", imagename);
+    // }, 15000);
+}
+
+function stopMusic() {
+    document.getElementById("anthem-info").innerText= "Now Playing: ";
+    if (!audio.paused) audio.pause();
 }
 
 // This function resets the values after a city has been completed. It selects a new city
@@ -90,6 +104,7 @@ function setAudio(cityName) {
 function resetValues() {
     numberOfGuessesRemaining = 15;
     chosenCity = cities[Math.floor(Math.random() * cities.length)];
+    console.log("chosen city: " + chosenCity);
     lettersGuessed = [];
     document.getElementById("underscores").innerText = generateUnderscoreString(chosenCity, lettersGuessed);
     document.getElementById("wins").innerText = "Wins: " + wins;
