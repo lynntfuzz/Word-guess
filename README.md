@@ -1,2 +1,4 @@
 # Word-guess
-A word guess game. Project #3.
+A word guess game. Homework #3
+
+
