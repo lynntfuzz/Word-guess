@@ -82,17 +82,6 @@ function setAudio(cityName) {
         document.getElementById("city_result").textContent = "Guess another city!!!";
         document.getElementById("citypic").setAttribute("src", imagename);
     }, 15000);
-    //setTimeout(audio.pause(), 20000);
-    // var audio = document.getElementById("anthem-player");
-    // console.log(audio);
-    // var source = document.getElementById("music-source");
-    // console.log(source);
-    // source.setAttribute("src", audiofile);
-    // console.log(source)
-    // audio.play();
-    
-    // audio.setAttribute("src", audiofile);
-    // document.getElementById("anthem-player").play();
 }
 
 // This function resets the values after a city has been completed. It selects a new city

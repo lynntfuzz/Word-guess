@@ -13,12 +13,31 @@ h1 {
     font-weight: bold;
 }
 
+/* .jumbotron {
+    width:100%;
+    background-image: url("../images/O97POP0.jpg");
+    background-size: cover;
+    background-repeat:no-repeat;
+    background-position:bottom;
+    padding:240px 0 140px 0;
+    margin-bottom:20px; 
+} */
+
+/* .jumbotron h1 {
+    width:100%;
+    position:absolute;top:0;left:0;
+    text-align: center;
+} */
+
 h3 {
     font-size:18px;
 }
 
 body {
-    width:100%;
+    /* width:100%; */
+    /* background-image:"../images/ball-shaped-black-blur-6397.jpg";
+    background-repeat: no-repeat;
+    background-size: cover;  */
 }
 
 .word {
