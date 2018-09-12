@@ -25,10 +25,10 @@ document.onkeyup = function(event) {
         var userGuess = event.key;
         if (isLetter(userGuess)) {
             numberOfGuessesRemaining--;
-            document.getElementById("guesses_remaining").textContent = numberOfGuessesRemaining;
+            document.getElementById("guesses_remaining").textContent = "Guesses Remaining: " + numberOfGuessesRemaining;
             if (!lettersGuessed.includes(userGuess.toUpperCase())) lettersGuessed.push(userGuess.toUpperCase());
             document.getElementById("underscores").textContent = generateUnderscoreString(chosenCity, lettersGuessed);
-            document.getElementById("lettersUsed").textContent = lettersGuessed;
+            document.getElementById("lettersUsed").textContent = "Letters Used: " + lettersGuessed;
             if (!document.getElementById("underscores").textContent.includes("_ ")) {
                 setImage(chosenCity); // show city whether win or lose   
                 setAudio(chosenCity);
@@ -92,9 +92,9 @@ function resetValues() {
     chosenCity = cities[Math.floor(Math.random() * cities.length)];
     lettersGuessed = [];
     document.getElementById("underscores").innerText = generateUnderscoreString(chosenCity, lettersGuessed);
-    document.getElementById("wins").innerText = wins;
-    document.getElementById("lettersUsed").innerText = lettersGuessed;
-    document.getElementById("guesses_remaining").innerText = numberOfGuessesRemaining;
+    document.getElementById("wins").innerText = "Wins: " + wins;
+    document.getElementById("lettersUsed").innerText = "Letters Guessed: " + lettersGuessed;
+    document.getElementById("guesses_remaining").innerText = "Guesses Remaining: " + numberOfGuessesRemaining;
 }
 
 // After the entire list of cities has been exhaused, the game is over and this function
