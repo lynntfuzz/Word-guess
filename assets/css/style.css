@@ -13,7 +13,22 @@ h1 {
     font-weight: bold;
 }
 
+body {
+    background-color: #a8c2ed;
+}
 
+.jumbotron {
+    padding-top:28px;
+    padding-bottom: 100px;
+    font-weight: bold;
+    background-image: url("../images/skyline.jpg");
+    background-size: cover;
+    color:white;
+}
+
+.right_panel {
+    padding: 0px;
+}
 h3 {
     font-size:18px;
 }
@@ -23,7 +38,7 @@ h3 {
     text-align: center;
     padding: 15px; 
     margin: 15px;
-    background: lightgray;
+    background: white;
 }
 
 .guesses_remaining {
@@ -45,10 +60,10 @@ h3 {
 }
 
 .player {
-    padding:10px;
-    width:200px;
-    height:150px;
+    padding: 20px;
+    background: black;
 }
+
 .image_container {
     
 }

@@ -15,6 +15,7 @@ city_image.setAttribute("src", imagename);
 console.log("Chosen city = " + chosenCity);
 document.getElementById("city_result").textContent = "Guess the city!!!";
 var audio = new Audio("");
+document.getElementById("stop-btn").disabled = true;
 document.getElementById("stop-btn").addEventListener("click", stopMusic);
 
 
@@ -86,6 +87,7 @@ function playAnthem(cityName) {
     console.log("cities= "+ CITIES_STATIC[index]);
     console.log("countriese = " + countries[index]);
     document.getElementById("anthem-info").innerText= "Now Playing: National Anthem of " + countries[index];
+    document.getElementById("stop-btn").disabled = false;
     // setTimeout(function() { 
     //     stopMusic();
     //     document.getElementById("city_result").textContent = "Guess another city!!!";
@@ -96,6 +98,7 @@ function playAnthem(cityName) {
 function stopMusic() {
     document.getElementById("anthem-info").innerText= "Now Playing: ";
     if (!audio.paused) audio.pause();
+    document.getElementById("stop-btn").disabled = true;
 }
 
 // This function resets the values after a city has been completed. It selects a new city
